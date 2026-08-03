@@ -1,5 +1,6 @@
 using System.Text;
 using Api.Infraestructura;
+using Api.Servicios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -53,6 +54,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    options.MapInboundClaims = false;
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
@@ -66,6 +68,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddSingleton<JwtTokenService>();
+builder.Services.AddScoped<SolicitudServicio>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
