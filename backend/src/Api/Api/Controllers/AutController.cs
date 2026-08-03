@@ -9,9 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers;
 
-[ApiController]
-[Route("api/v1")]
-public class AutController : ControllerBase
+public class AutController : BaseApiController
 {
     private readonly MesaSitecDbContext _db;
     private readonly JwtTokenService _jwtTokenService;
@@ -68,17 +66,10 @@ public class AutController : ControllerBase
     [HttpGet("me")]
     public async Task<IActionResult> ObtenerPerfil()
     {
-        var subClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
-                    ?? User.FindFirst("sub")?.Value;
-
-        if (string.IsNullOrEmpty(subClaim) || !Guid.TryParse(subClaim, out var usuarioId))
-        {
-            throw ExcepcionApi.NoAutenticado("Token ausente, inválido o expirado.");
-        }
-
+        var userId = UsuarioId;
         var usuario = await _db.Usuarios
             .Include(u => u.Tenant)
-            .FirstOrDefaultAsync(u => u.Id == usuarioId);
+            .FirstOrDefaultAsync(u => u.Id == userId);
 
         if (usuario == null || !usuario.Activo)
         {
