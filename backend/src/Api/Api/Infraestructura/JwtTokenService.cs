@@ -15,12 +15,13 @@ public class JwtTokenService
         _configuration = configuration;
     }
 
-    public string GenerarToken(Usuario usuario)
+    public (string token, int expiraEn) GenerarToken(Usuario usuario)
     {
         var jwtSecret = _configuration["JWT_SECRET"];
-                       
+        var duracionHoras = 8;
+        var expiraEnSegundos = (int)TimeSpan.FromHours(duracionHoras).TotalSeconds;
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret!));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -34,10 +35,11 @@ public class JwtTokenService
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(8),
+            expires: DateTime.UtcNow.AddHours(duracionHoras),
             signingCredentials: credentials
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+        return (tokenString, expiraEnSegundos);
     }
 }
