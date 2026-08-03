@@ -1,3 +1,4 @@
+## MesaSitec: Prueba Tecnica para   Desarrollador Junior
 
 ##  Requisitos Previos
 
@@ -9,12 +10,12 @@
 
 ##  Cómo Levantar el Proyecto (Paso a Paso)
 
-Abrir un terminal : Win+R -> escribir cmd  -> enter
-En la terminal escribir  los siguientes comandos(después de cada comando presionar enter)
+- Para abrir la terminal : Win+R -> escribir cmd  -> enter
+- En la terminal escribir  los siguientes comandos(después de cada comando presionar enter)
 1.  md MesaSitec_Abigail && cd MesaSitec_Abigail
 2.  git clone https://github.com/vaquiAbi/MesaSitec.git
 3.  dotnet run --project MesaSitec/backend/src/Api/Api/Api.csproj --launch-profile "http"
-Ir al enlace indicado abajo:
+- Ir al enlace indicado abajo:
 4. http://localhost:5080/swagger
 
 
