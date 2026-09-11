@@ -1,6 +1,6 @@
 
-## 1. Decisiones técnicas del proyecto
 
+## 1. Decisiones técnicas del proyecto
 ### A. Centralización de claims mediante `BaseApiController`
 - **Alternativa descartada**: Extraer los claims manualmente en cada método de controlador. Opción descartada ya que al tener un contralador dedicado a la extracción se evita código repetido, y tambien un estándar en errores cuando el claim sea nulo o invalido.
 

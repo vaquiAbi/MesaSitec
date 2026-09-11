@@ -46,6 +46,8 @@ public class MiddlewareErrores
                         Codigo = "OPERACION_NO_PERMITIDA"
                     });
                 }
+
+                
             }
         }
         catch (Exception ex)
