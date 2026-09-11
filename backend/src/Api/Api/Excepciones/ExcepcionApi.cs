@@ -1,3 +1,5 @@
+using Api.Constantes;
+
 namespace Api.Excepciones;
 
 public class ExcepcionApi : Exception
@@ -33,7 +35,7 @@ public class ExcepcionApi : Exception
     public static ExcepcionApi RecursoNoEncontrado(string mensaje = "Recurso no encontrado o no pertenece a la organización.")
         => new(404, "RECURSO_NO_ENCONTRADO", mensaje, "Recurso no encontrado");
 
-    public static ExcepcionApi TransicionInvalida(string mensaje = "Transición de estado no permitida.")
+    public static ExcepcionApi TransicionInvalida(string mensaje = Mensajes.MensajeGenMDS)
         => new(409, "TRANSICION_INVALIDA", mensaje, "Transición inválida");
 
     public static ExcepcionApi AgenteInvalido(string mensaje = "El agente especificado no es válido.")
